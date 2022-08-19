@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora | Dark and Light</title>
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    </head>
+
+    <body> 
+
+        <div class="btn">
+            <strong>🌞</strong>
+            <strong>🌙</strong>
+        </div>
+
+        <div class="container">
+            <form class="calculator" name="calc">
+              
+                <p id="historico" type="text" class="history" readonly name="txt"></p>
+                <p id="resultado" type="text" class="resultcss" readonly name="txt"></p>
+                
+
+                <span class="num clear" onclick="clean()"><i>LIMPAR</i></span>
+
+                <span class="num back" onclick="back()"><i><<<</i></span>
+
+                <span class="num" onclick="insert('/')"><i>&#247;</i></span>
+
+
+
+                <span class="num" onclick="insert('7')"><i>7</i></span>
+
+                <span class="num" onclick="insert('8')"><i>8</i></span>
+
+                <span class="num" onclick="insert('9')"><i>9</i></span>
+
+                
+
+                <span class="num" onclick="insert('*')"><i>x</i></span>
+
+
+
+                <span class="num" onclick="insert('4')"><i>4</i></span>
+
+                <span class="num" onclick="insert('5')"><i>5</i></span>
+
+                <span class="num" onclick="insert('6')"><i>6</i></span>
+
+
+
+                <span class="num" onclick="insert('-')"><i>-</i></span>
+
+
+
+                <span class="num" onclick="insert('1')"><i>1</i></span>
+
+                <span class="num" onclick="insert('2')"><i>2</i></span>
+
+                <span class="num" onclick="insert('3')"><i>3</i></span>
+
+
+
+                <span class="num plus" onclick="insert('+')"><i>+</i></span>
+
+                
+
+                <span class="num" onclick="insert('.')"><i>.</i></span>
+                
+                <span class="num zero" onclick="insert('0')"><i>0</i></span>
+                
+                
+                
+                
+
+                <span class="num equal" onclick="calcular()"><i>=</i></span>
+                
+            </form>
+
+        </div>
+
+        <script>
+
+
+
+            function insert(num){
+                let numero = document.getElementById('resultado').innerHTML;
+                
+                if((!numero) && (num === '/' || num === '*' || num === '+')){
+                    num = ''
+                }
+
+                if(num === "-" || num === "+" || num ==="*" || num === "/"){
+
+                     if (numero.substr(-1) === '-' || numero.substr(-1) === '+' || numero.substr(-1) === '*' || numero.substr(-1) === '/'){
+                         back()
+                     }
+                }  
+                console.log(document.getElementById('resultado').innerHTML)  
+                     document.getElementById('resultado').innerHTML = document.getElementById('resultado').innerHTML + num;
+            }
+
+
+
+
+
+            function clean(){
+                document.getElementById('resultado').innerHTML = "";
+                document.getElementById('historico').innerHTML = "";
+            }
+
+
+
+
+
+            function back(){
+                let resultado = document.getElementById('resultado').innerHTML;
+                document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+            }
+
+
+
+
+            function calcular(){
+                let resultadoF = document.getElementById('resultado').innerHTML;
+
+                if(resultadoF){
+                    document.getElementById('resultado').innerHTML = eval(resultadoF);
+                    document.getElementById('historico').innerHTML = resultadoF + " = " + document.getElementById('resultado').innerHTML
+                }
+                
+            }
+
+
+
+
+
+            let body = document.querySelector('body');
+            let btn = document.querySelector('.btn');
+
+            btn.onclick = function(){
+                body.classList.toggle('light')
+            }
+
+
+
+        </script>
+    </body>
+</html>
